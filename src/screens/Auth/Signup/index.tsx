@@ -48,7 +48,9 @@ const Signup = ({ navigation }: any) => {
               placeholder="Enter email here"
             />
 
-            <CustomButton text="Continue with Email" borderRadius={25} />
+            <CustomButton
+            onPress={()=>navigation.navigate('favoriteSports')}
+             text="Continue with Email" borderRadius={25} />
 
             <View
               style={{
@@ -104,7 +106,7 @@ const Signup = ({ navigation }: any) => {
         </View>
 
         <TouchableOpacity
-          onPress={() => navigation.navigate("")}
+          onPress={() => navigation.navigate("favoriteSports")}
           style={styles.skipContainer}
         >
           <Image

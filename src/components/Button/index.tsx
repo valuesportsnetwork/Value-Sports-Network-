@@ -33,7 +33,7 @@ const CustomButton = ({
         [
           {
             width: width || "100%",
-            height: sizeHelper.calHp(height || 80),
+            height: sizeHelper.calHp(height || 70),
             backgroundColor: bgColor || theme.colors.primary,
             justifyContent: "center",
             alignItems: "center",
@@ -51,8 +51,8 @@ const CustomButton = ({
         text={text}
         color={textColor || theme.colors.white}
         size={size || 25}
-        // fontWeight={fontWeight || "700"}
-        // fontFam={fontFam || fonts.satoshi_bold}
+        fontWeight={fontWeight || "500"}
+        fontFam={fontFam}
       />
       {children}
     </TouchableOpacity>

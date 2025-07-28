@@ -1,6 +1,5 @@
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { Image, Platform, StyleSheet, View } from "react-native";
-import { scale, verticalScale } from "react-native-size-matters";
 import CustomText from "../../components/Text";
 import { theme } from "../../utils/Themes";
 import { images } from "../../assets/pngs";
@@ -9,20 +8,18 @@ import { fonts } from "../../utils/Themes/fonts";
 import { useEffect } from "react";
 import { useIsFocused } from "@react-navigation/native";
 import Home from "../../screens/Main/Home";
-import Quiz from "../../screens/Main/Quiz";
-import QuizDetail from "../../screens/Main/QuizDetail";
-import Trending from "../../screens/Main/Trending";
-import { useTheme } from '@react-navigation/native';
+import { useTheme } from "@react-navigation/native";
 import sizeHelper from "../../utils/Helpers";
+import TopGames from "../../screens/Main/TopGames";
+import Vip from "../../screens/Main/Vip";
+import Feed from "../../screens/Main/Feed";
+import Profile from "../../screens/Main/Profile";
 
 const BottomTab = ({}: any) => {
   const Bottom = createBottomTabNavigator();
   const { colors } = useTheme(); // Get the current theme's colors
 
-  const TabItem = ({ focused, title, img,colors }: any) => {
-   
-
-
+  const TabItem = ({ focused, title, img, colors }: any) => {
     return (
       <View style={[style.itemStyle]}>
         <Image
@@ -30,15 +27,13 @@ const BottomTab = ({}: any) => {
           source={img}
           style={{
             ...style.img,
-            tintColor: focused ? colors.primary : colors.grey,
+            // tintColor: focused ? theme.colors.primary : colors.gray500,
           }}
         />
         <CustomText
           text={title}
-          size={18}
-          fontFam={fonts.satoshi_medium}
-          fontWeight="600"
-          color={focused ? colors.primary : colors.grey}
+          size={15}
+          color={focused ?theme.colors.primary :theme.colors.gray500}
         />
       </View>
     );
@@ -68,18 +63,18 @@ const BottomTab = ({}: any) => {
           };
         },
         tabBarStyle: {
-          backgroundColor: colors.background, // Semi-transparent background
+          backgroundColor: theme.colors.white, // Semi-transparent background
           justifyContent: "center",
           alignItems: "center",
           shadowColor: theme.colors.black,
           shadowOffset: { width: 3, height: 6 },
           shadowOpacity: 0.5,
           shadowRadius: 4,
-          borderTopWidth:-1,
-            // borderTopColor: theme.colors.input_border,
+          borderTopWidth: 1,
+          // borderTopColor: theme.colors.input_border,
           display: "flex",
-          height: verticalScale(70),
-          paddingHorizontal: scale(10),
+          height: sizeHelper.calHp(120),
+          paddingHorizontal: sizeHelper.calWp(20),
         },
         headerShown: false,
       })}
@@ -93,7 +88,7 @@ const BottomTab = ({}: any) => {
               <TabItem
                 title={"Home"}
                 colors={colors}
-                img={focused ? images.home_filled : images.home}
+                img={focused ? images.filled_home : images.home}
                 focused={focused}
               />
             );
@@ -114,16 +109,16 @@ const BottomTab = ({}: any) => {
       />
 
       <Bottom.Screen
-        name="Quiz"
-        component={Quiz}
+        name="TopGames"
+        component={TopGames}
         options={{
           headerShown: false,
           tabBarIcon: ({ focused }) => {
             return (
               <TabItem
-              colors={colors}
-                title={"Quiz"}
-                img={focused ? images.schedule_filled : images.course}
+                colors={colors}
+                title={"Top Games"}
+                img={focused ? images.top_game : images.top_game}
                 focused={focused}
               />
             );
@@ -131,16 +126,34 @@ const BottomTab = ({}: any) => {
         }}
       />
       <Bottom.Screen
-        name="CreateQuiz"
-        component={QuizDetail}
+        name="Vip"
+        component={Vip}
         options={{
           headerShown: false,
           tabBarIcon: ({ focused }) => {
             return (
               <TabItem
-              colors={colors}
-                title={"Create Quiz"}
-                img={focused ? images.schedule : images.schedule}
+                colors={colors}
+                title={"Vip"}
+                img={focused ? images.filled_vip : images.vip}
+                focused={focused}
+              />
+            );
+          },
+        }}
+      />
+
+      <Bottom.Screen
+        name="Feed"
+        component={Feed}
+        options={{
+          headerShown: false,
+          tabBarIcon: ({ focused }) => {
+            return (
+              <TabItem
+                colors={colors}
+                title={"Feed"}
+                img={focused ? images.filled_feed : images.feed}
                 focused={focused}
               />
             );
@@ -149,26 +162,22 @@ const BottomTab = ({}: any) => {
       />
 
 <Bottom.Screen
-        name="Trending"
-        component={Trending}
+        name="Profile"
+        component={Profile}
         options={{
           headerShown: false,
           tabBarIcon: ({ focused }) => {
             return (
-              
               <TabItem
-              colors={colors}
-                title={"Trending"}
-                img={focused ? images.schedule : images.schedule}
+                colors={colors}
+                title={"Profile"}
+                img={focused ? images.filled_profile : images.profile}
                 focused={focused}
               />
             );
           },
         }}
       />
-     
-
-     
     </Bottom.Navigator>
   );
 };
@@ -176,16 +185,17 @@ export default BottomTab;
 
 const style = StyleSheet.create({
   itemStyle: {
-    width: scale(100),
+    width:sizeHelper.calWp(120),
     backgroundColor: "transparent", // Semi-transparent background
-    paddingTop: verticalScale(30),
+    paddingTop: sizeHelper.calHp(40),
     justifyContent: "center",
     alignItems: "center",
-    gap: verticalScale(8),
+    gap: sizeHelper.calHp(8),
+    
   },
 
   img: {
-    height: sizeHelper.calHp(33),
-    width:sizeHelper.calHp(33),
+    height: sizeHelper.calHp(45),
+    width: sizeHelper.calHp(45),
   },
 });

@@ -67,7 +67,9 @@ const Login = ({ navigation }: any) => {
               </TouchableOpacity>
             </View>
 
-            <CustomButton text="Continue" borderRadius={25} />
+            <CustomButton text="Continue" 
+            onPress={()=>navigation.navigate("BottomTab")}
+            borderRadius={25} />
 
             <View
               style={{

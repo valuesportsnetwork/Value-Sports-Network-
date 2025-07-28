@@ -74,6 +74,7 @@ export type InputProps = {
   rightSourceColor?:any
   onFocus?:()=>void
   labelImg?:any
+  labelSize?:any
 };
 //  Custom screen layout props
 

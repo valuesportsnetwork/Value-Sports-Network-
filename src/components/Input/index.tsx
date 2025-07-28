@@ -42,7 +42,8 @@ const CustomInput = ({
   label,
   rightSourceColor,
   onFocus,
-  labelImg
+  labelImg,
+  labelSize
 }: InputProps) => {
   const [isFocused, setIsFocused] = useState(false);
   const { colors } = useTheme(); // Get the current theme's colors
@@ -51,7 +52,9 @@ const CustomInput = ({
     <View style={{ ...props, width: width || "100%" }}>
       {label && (
         <View style={{ ...appStyles.row, gap: sizeHelper.calWp(10),marginBottom: sizeHelper.calWp(15)  }}>
-          <Image
+          {
+            labelImg&&(
+              <Image
               source={labelImg}
               style={{
                 width: sizeHelper.calWp(30),
@@ -60,9 +63,13 @@ const CustomInput = ({
               }}
               resizeMode={"contain"}
             />
+
+            )
+          }
+        
           <CustomText
             // fontFam={font.WorkSans_Regular}
-            size={25}
+            size={ labelSize ||25}
             text={label}
           />
         </View>
